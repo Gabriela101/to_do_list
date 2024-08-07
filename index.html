@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <!-- <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+        <script src="https://kit.fotawesome.com/a81368914.js"></script> -->
+        <title>Prima aplicatie JavaScript </title>
+    </head>
+    <body>
+        <h1><span class="styling"></span>ToDo List</h1>
+        <div class="input_div">
+            <input class="input" type="text" placeholder="Care este obiectivul tău?">
+            <button class="addButton"><i class="fas fa-plus"></i></button>
+        </div>
+        <div class="container">
+            
+            <div class="item">
+                <input type="text" class="item_input" value="Să călătoresc în Franța." disabled>
+                <button class="editButton">Editează</button>
+                <button class="removeButton">Șterge</button>
+            </div>
+       
+
+        </div>
+    <script>
+        const addButton = document.querySelector('.addButton');
+        var input = document.querySelector('.input');
+        const container = document.querySelector('.container');
+
+        class item{
+            constructor(itemName){
+                this.createDiv(itemName);
+    }
+
+        createDiv(itemName){
+            let input = document.createElement('input');
+            input.value = itemName;
+            input.disabled = true;
+            input.classList.add('item_input');
+            input.type = "text";
+
+        let itemBox = document.createElement('div');
+            itemBox.classList.add('item');
+
+        let editButton = document.createElement('button');
+            editButton.innerHTML = "Editeaza";
+            editButton.classList.add('editButton');
+
+        let removeButton = document.createElement('button');
+            removeButton.innerHTML = "Sterge";
+            removeButton.classList.add('removeButton');
+
+        container.appendChild(itemBox);
+
+            itemBox.appendChild(input);
+            itemBox.appendChild(editButton);
+            itemBox.appendChild(removeButton);
+
+        editButton.addEventListener('click', () => this.edit(input));
+
+        removeButton.addEventListener('click', () => this.remove(itemBox));
+        }
+         edit(input){
+            input.disabled = !input.disabled;
+        }
+         remove(item){
+            container.removeChild(item);
+            }
+        }
+        function check(){
+            if(input.value !=""){
+        new item(input.value);
+        input.value="";
+            }
+        }       
+        addButton.addEventListener('click', check);
+        window.addEventListener('keydown', (e)=>{
+            if(e.keyCode==13){
+            check();
+            }   
+        })
+    </script>   
+    </body>
+</html>
